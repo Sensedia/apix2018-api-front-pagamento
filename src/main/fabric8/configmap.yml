@@ -1,0 +1,15 @@
+metadata:
+  namespace: commons
+  name: ${project.artifactId}
+data:
+  pubsub.antifraude.topic: antifraude-in
+  pubsub.antifraude.subscriptionId: antifraude-out
+  pubsub.boletos.topic: boletos-in
+  pubsub.boletos.subscriptionId: boletos-out
+  pubsub.notificacao.topic: notificacoes-in
+  pubsub.notificacao.subscriptionId: notificacoes-out
+  pubsub.pagamentos.topic: pagamentos-in
+  pubsub.pagamentos.subscriptionId: pagamentos-out
+  pubsub.validador.topic: validador-in
+  pubsub.validador.subscriptionId: validador-out
+  rest.gw.pagamentos.endpoint: http://api-apix.sensedia.com/api-pagamento/v1/debitos

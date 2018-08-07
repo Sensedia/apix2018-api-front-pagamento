@@ -1,0 +1,73 @@
+metadata:
+  namespace: commons
+spec:
+  replicas: 1
+  template:
+    spec:
+      volumes:
+        - name: google-cloud-key
+          secret:
+            secretName: commons-key
+      containers:
+        - volumeMounts:
+            - name: google-cloud-key
+              mountPath: /var/secrets/google
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+            - name: PUBSUB_ANTIFRAUDE_TOPIC
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.antifraude.topic
+            - name: PUBSUB_ANTIFRAUDE_SUBSCRIPTIONID
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.antifraude.subscriptionId
+            - name: PUBSUB_BOLETOS_TOPIC
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.boletos.topic
+            - name: PUBSUB_BOLETOS_SUBSCRIPTIONID
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.boletos.subscriptionId
+            - name: PUBSUB_NOTIFICACAO_TOPIC
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.notificacao.topic
+            - name: PUBSUB_NOTIFICACAO_SUBSCRIPTIONID
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.notificacao.subscriptionId
+            - name: PUBSUB_PAGAMENTOS_TOPIC
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.pagamentos.topic
+            - name: PUBSUB_PAGAMENTOS_SUBSCRIPTIONID
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.pagamentos.subscriptionId
+            - name: PUBSUB_VALIDADOR_TOPIC
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.validador.topic
+            - name: PUBSUB_VALIDADOR_SUBSCRIPTIONID
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: pubsub.validador.subscriptionId
+            - name: REST_GW_PAGAMENTOS_ENDPOINT
+              valueFrom:
+               configMapKeyRef:
+                  name: ${project.artifactId}
+                  key: rest.gw.pagamentos.endpoint
+          imagePullPolicy: Always
